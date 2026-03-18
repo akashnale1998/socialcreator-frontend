@@ -1,13 +1,12 @@
 "use client";
 
-import React from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { Sparkles, Github, Twitter, Mail } from 'lucide-react';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { AppDispatch, RootState } from '@/store/store';
@@ -15,7 +14,7 @@ import { loginThunk } from '@/store/apis';
 import axios from 'axios';
 import { trackEvent } from '@/lib/analytics';
 
-export default function LoginPage() {
+function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
@@ -119,7 +118,7 @@ export default function LoginPage() {
               />
               <path
                 fill="currentColor"
-                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 12-4.53z"
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 12-4.53z"
               />
             </svg>
             Continue with Google
@@ -192,5 +191,17 @@ export default function LoginPage() {
         </div>
       </motion.div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[#030014] flex items-center justify-center">
+        <Sparkles className="w-8 h-8 text-primary animate-pulse" />
+      </div>
+    }>
+      <LoginForm />
+    </Suspense>
   );
 }

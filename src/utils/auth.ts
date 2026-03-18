@@ -1,5 +1,4 @@
 const API_URL = 'http://localhost:5000/api/auth';
-// const API_URL = 'http://localhost:5000/api/auth';
 
 export const setToken = (token: string) => {
   if (typeof window !== 'undefined') {

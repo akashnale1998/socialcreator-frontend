@@ -32,7 +32,7 @@ import { AppDispatch, RootState } from '@/store/store';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
-export default function HookGenerator() {
+function HooksForm() {
   const searchParams = useSearchParams();
   const initialTopic = searchParams.get('topic') || '';
 
@@ -423,3 +423,17 @@ export default function HookGenerator() {
     </div>
   );
 }
+
+export default function HookGenerator() {
+  return (
+    <React.Suspense fallback={
+      <div className="max-w-6xl mx-auto space-y-8 animate-pulse text-center py-20">
+        <div className="h-10 w-48 bg-white/5 rounded-full mx-auto mb-4" />
+        <div className="h-4 w-64 bg-white/5 rounded-full mx-auto" />
+      </div>
+    }>
+      <HooksForm />
+    </React.Suspense>
+  );
+}
+

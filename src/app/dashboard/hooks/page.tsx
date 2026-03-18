@@ -1,5 +1,5 @@
 "use client";
-export const dynamic = "force-dynamic";
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card } from '@/components/ui/Card';
@@ -35,7 +35,7 @@ import { trackEvent } from '@/lib/analytics';
 import { CreditErrorDisplay } from '@/components/dashboard/CreditErrorDisplay';
 import { UpgradeModal } from '@/components/dashboard/UpgradeModal';
 
-export default function HookGenerator() {
+function HooksForm() {
   const searchParams = useSearchParams();
   const initialTopic = searchParams.get('topic') || '';
 
@@ -449,3 +449,20 @@ export default function HookGenerator() {
     </div>
   );
 }
+
+export default function HookGenerator() {
+  return (
+    <React.Suspense fallback={
+      <div className="max-w-6xl mx-auto space-y-8 animate-pulse">
+        <div className="h-20 bg-white/5 rounded-2xl" />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="h-96 bg-white/5 rounded-2xl" />
+          <div className="lg:col-span-2 h-96 bg-white/5 rounded-2xl" />
+        </div>
+      </div>
+    }>
+      <HooksForm />
+    </React.Suspense>
+  );
+}
+
