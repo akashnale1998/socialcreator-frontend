@@ -38,7 +38,7 @@ export const UpgradeModal = ({ isOpen, onClose, featureName, requiredPlan = "Pro
   return createPortal(
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-0 md:p-4 overflow-hidden">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-6 overflow-y-auto overflow-x-hidden">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -51,7 +51,7 @@ export const UpgradeModal = ({ isOpen, onClose, featureName, requiredPlan = "Pro
             initial={{ opacity: 0, scale: 0.95, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 30 }}
-            className="relative w-full max-w-[480px] bg-[#050410] border border-white/10 rounded-[40px] shadow-[0_32px_128px_-16px_rgba(0,0,0,0.8)] overflow-hidden m-4"
+            className="relative w-full max-w-[480px] bg-[#050410] border border-white/10 rounded-[32px] md:rounded-[40px] shadow-[0_32px_128px_-16px_rgba(0,0,0,0.8)] overflow-hidden my-auto"
           >
             {/* Top Shine */}
             <div className="absolute top-0 left-0 right-0 h-[100px] bg-gradient-to-b from-primary/10 to-transparent pointer-events-none" />
@@ -63,24 +63,24 @@ export const UpgradeModal = ({ isOpen, onClose, featureName, requiredPlan = "Pro
               <X size={18} />
             </button>
 
-            <div className="p-10 text-center space-y-8 relative z-10">
+            <div className="p-6 md:p-10 text-center space-y-6 md:space-y-8 relative z-10">
               <div className="relative inline-block">
-                <div className="w-24 h-24 bg-primary/20 rounded-[32px] flex items-center justify-center text-primary mx-auto relative z-10 border border-primary/20">
-                  <ShieldCheck size={48} strokeWidth={1.5} />
+                <div className="w-16 h-16 md:w-24 md:h-24 bg-primary/20 rounded-[24px] md:rounded-[32px] flex items-center justify-center text-primary mx-auto relative z-10 border border-primary/20">
+                  <ShieldCheck className="w-8 h-8 md:w-12 md:h-12" strokeWidth={1.5} />
                 </div>
                 {/* Decorative pulse */}
-                <div className="absolute inset-0 bg-primary/20 rounded-[32px] animate-ping opacity-20 -z-10" />
+                <div className="absolute inset-0 bg-primary/20 rounded-[24px] md:rounded-[32px] animate-ping opacity-20 -z-10" />
               </div>
               
               <div className="space-y-3">
-                <h2 className="text-4xl font-extrabold tracking-tight">Upgrade to <br /><span className="text-gradient">Unlimited Access</span></h2>
+                <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight leading-tight">Upgrade to <br /><span className="text-gradient">Unlimited Access</span></h2>
                 {message ? (
                   <div className="p-4 bg-primary/10 border border-primary/20 rounded-2xl">
                     <p className="text-sm font-bold text-primary mb-1">Attention</p>
                     <p className="text-xs text-white/70 leading-relaxed">{message}</p>
                   </div>
                 ) : (
-                  <p className="text-white/40 max-w-xs mx-auto text-base leading-relaxed">
+                  <p className="text-white/40 max-w-xs mx-auto text-sm md:text-base leading-relaxed">
                     Unlock <span className="text-white font-semibold">{featureName || "this tool"}</span> and take your content to the next level with our <span className="text-primary font-bold">{requiredPlan}</span>.
                   </p>
                 )}
@@ -97,8 +97,8 @@ export const UpgradeModal = ({ isOpen, onClose, featureName, requiredPlan = "Pro
                       <item.icon size={20} />
                     </div>
                     <div>
-                      <p className="text-sm font-bold text-white/90">{item.label}</p>
-                      <p className="text-[11px] text-white/30">{item.sub}</p>
+                      <p className="text-sm font-bold text-white/90 leading-none">{item.label}</p>
+                      <p className="text-[10px] md:text-[11px] text-white/30 mt-0.5">{item.sub}</p>
                     </div>
                   </div>
                 ))}
@@ -106,7 +106,7 @@ export const UpgradeModal = ({ isOpen, onClose, featureName, requiredPlan = "Pro
 
               <div className="pt-4 space-y-4">
                 <Link href="/dashboard/plans" onClick={onClose} className="block">
-                  <Button className="w-full h-16 text-md font-extrabold shadow-[0_20px_40px_-10px_rgba(99,102,241,0.3)] group rounded-2xl">
+                  <Button className="w-full h-14 md:h-16 text-sm md:text-md font-extrabold shadow-[0_20px_40px_-10px_rgba(99,102,241,0.3)] group rounded-2xl">
                     View Pricing Plans <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </Link>
